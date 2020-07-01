@@ -43,6 +43,7 @@ This Terraform code will create VM for windows or for linux's with its necessary
 
 List of image obtain by running azure-cli command given in following link
 [click here for more information](https://docs.microsoft.com/en-us/cli/azure/vm/image?view=azure-cli-latest#az-vm-image-list)
+
 Example: To obtain list of **`Windows image`** available in **`West Europe`**
 ```sh
 az vm image list -p MicrosoftWindowsServer -l 'West Europe' --all
