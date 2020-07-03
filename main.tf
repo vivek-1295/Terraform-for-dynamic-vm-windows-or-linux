@@ -34,9 +34,9 @@ resource "azurerm_subnet" "Subnetinternal" {
 
 #NIC
 resource "azurerm_network_interface" "main" {
-  name                      = "nic-network"
-  location                  = azurerm_resource_group.main.location
-  resource_group_name       = azurerm_resource_group.main.name
+  name                = "nic-network"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
 
   ip_configuration {
     name                          = "internal"
@@ -72,7 +72,7 @@ resource "azurerm_virtual_machine" "main" {
       version   = "latest"
     }
   }
-  
+
   #linux image
   dynamic "storage_image_reference" {
     for_each = local.linux
@@ -105,18 +105,18 @@ resource "azurerm_virtual_machine" "main" {
     content {
       disable_password_authentication = false
       ssh_keys {
-            path     = "/home/AdminUser/.ssh/authorized_keys"
-            key_data = ""
-        }
+        path     = "/home/AdminUser/.ssh/authorized_keys"
+        key_data = ""
+      }
     }
   }
-  
+
   #Windows
   dynamic "os_profile_windows_config" {
     for_each = local.windows
     content {
       enable_automatic_upgrades = true
-      provision_vm_agent = true
+      provision_vm_agent        = true
     }
   }
 
@@ -127,10 +127,10 @@ resource "azurerm_virtual_machine" "main" {
 
 //Public Ip
 resource "azurerm_public_ip" "main" {
-  name                    = "PublicIp-netwowk"
+  name                = "PublicIp-netwowk"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
-  allocation_method       = "Static"
+  allocation_method   = "Static"
 
   tags = {
     Vivek = "public_ip"
